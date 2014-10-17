@@ -47,6 +47,37 @@ grunt.initConfig({
 });
 ```
 
+### Addendum
+Lightly tested fix included in this fork allowed the following configuration of a Yeoman generated project I've extended to work across subfolders. This need arose from a project directory structure that was not flat while using Firebase hosting for an Angularfire project. Upon deployment cached views were causing a problem. The original only worked for me on files contained in the views_root. The commented out line was prepending the src path in its comparisons. I've been able to use this configuration to build a functioning deploy, but more testing is required.
+
+```js
+grunt.initConfig({
+  // Filerev all images
+    filerev: {
+        dist: {
+            src: [
+              '<%= yeoman.dist %>/states/**/*.html', 
+              '<%= yeoman.dist %>/scripts/{,*/}*.js',
+              '<%= yeoman.dist %>/styles/{,*/}*.css',
+              '<%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
+              '<%= yeoman.dist %>/styles/fonts/*'
+            ]
+        }
+    },
+    filerev_replace: {
+        options: {
+        	assets_root: '<%= yeoman.dist %>'
+        },
+        dist: { 
+        	options: {
+        		views_root: '<%= yeoman.dist %>'
+        	},
+        	src: '<%= yeoman.dist %>/{,**/}*.{html,css,js}'
+        }
+    }
+});
+```
+
 ### Options
 
 #### options.assets_root
