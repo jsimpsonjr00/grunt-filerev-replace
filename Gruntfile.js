@@ -40,14 +40,11 @@ module.exports = function(grunt) {
       options: {
         assets_root: 'tmp/assets/'
       },
-      compiled_assets: {
-        src: 'tmp/assets/compiled/*.{css,js}'
-      },
-      views: {
+      dist: {
         options: {
           views_root: 'tmp/views/'
         },
-        src: 'tmp/views/**/*.html'
+        src: 'tmp/{,**/}*.{html,css,js}'
       }
     },
 
