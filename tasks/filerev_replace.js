@@ -1,5 +1,4 @@
 /*
-//This was modified to work with files in subfolders
  * grunt-filerev-replace
  * https://github.com/solidusjs/grunt-filerev-replace
  *
@@ -66,13 +65,9 @@ module.exports = function(grunt) {
 	    var changes = [],
 	    	changed = false;
 
-	    function logReplace( p2, asset_path, asset_src ) {
-	    	grunt.log.writeln( "Replacing: " + p2 + " - "+ asset_path + " for " + asset_src );
-	    };
-	    
 		function replace_string( match, p1, p2, p3 ) {
 	    	var asset_path = absolute_asset_path( p2, view_src, views_root ); //this is what is causing subfolder matching not to work
-	    	
+	
 	    	if( grunt.file.arePathsEquivalent( asset_path.toLowerCase(), asset_src.toLowerCase() ) ) {
 	    		changed = true;
 	    		return p1 + asset_dest + p3;
@@ -98,22 +93,28 @@ module.exports = function(grunt) {
     	return changes;
 	};
 
+	//grunt.file.isPathAbsolute override, because grunt's does not work properly on windows. the drive letter is prepended on one side though not the other
+	function isPathAbsolute( assetPath ) {
+		 var filepath = path.join.apply( path, arguments);
+		 return path.resolve(filepath).replace( /^\w\:/, '' ) === filepath.replace(/[\/\\]+$/, ''); //compare after stripping windows drive path
+	};
+	
 	function absolute_asset_path( string, view_src, views_root ) {
 	    var asset_path = string.trim();
 	    
-	    if( !grunt.file.isPathAbsolute( asset_path ) ) {
-	    	
-	    	//asset_path = path.join( path.dirname( view_src ), asset_path ); //this was prepending the file being searched's path to the compare, which was making subfolder compares fail
+	    if( !isPathAbsolute( asset_path ) ) { //No path in test was passing this with grunt on Windows. reason, drive letter in windows
+
+	    	asset_path = path.join( path.dirname( view_src ), asset_path );
 	    	asset_path = file_path_to_web_path( asset_path, views_root );
 	    	
-	    }
+	    } 
 	    
 	    return asset_path;
 	};
 
 	function log_view_changes( view_src, changes ) {
 	    if( changes.length > 0 ){
-	    	grunt.log.writeln( 'âœ” '.green+ view_src );
+	    	grunt.log.writeln( '✔ '.green+ view_src );
 	    	
 	    	for( var i in changes ){
 	    		grunt.log.writeln( '  '+ changes[i] );
