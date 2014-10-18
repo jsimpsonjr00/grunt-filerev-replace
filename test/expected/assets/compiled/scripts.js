@@ -3,8 +3,8 @@ var path = '/images/ajax-loader.4e26f87c.gif';
 
 // Relative path
 var path = '/images/ajax-loader.4e26f87c.gif';
-var path = '/images/ajax-loader.4e26f87c.gif';
-var path = '/images/ajax-loader.4e26f87c.gif';
+var path = '../images/ajax-loader.gif';
+var path = '../oops/../images/oops/../ajax-loader.gif';
 
 // Delimiters
 var path = "/images/ajax-loader.4e26f87c.gif";
