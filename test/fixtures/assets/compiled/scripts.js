@@ -1,26 +1,26 @@
 // Absolute path
-var path = '/images/ajax-loader.gif';
+var path = '/assets/images/ajax-loader.gif';
 
 // Relative path
-var path = '/oops/../images/ajax-loader.gif';
-var path = '../images/ajax-loader.gif';
-var path = '../oops/../images/oops/../ajax-loader.gif';
+var path = '/oops/../assets/images/ajax-loader.gif';
+var path = '../assets/images/ajax-loader.gif';
+var path = '../oops/../assets/images/oops/../ajax-loader.gif';
 
 // Delimiters
-var path = "/images/ajax-loader.gif";
-var path = '<img src="/images/ajax-loader.gif" />';
-var path = "var path = '/images/ajax-loader.gif';";
-var path = '/images/ajax-loader.gif', path = "/images/ajax-loader.gif";
+var path = "/assets/images/ajax-loader.gif";
+var path = '<img src="/assets/images/ajax-loader.gif" />';
+var path = "var path = '/assets/images/ajax-loader.gif';";
+var path = '/assets/images/ajax-loader.gif', path = "/assets/images/ajax-loader.gif";
 
 // Escaped delimiters
-var path = "body { background: url(\"/images/ajax-loader.gif\"); }";
+var path = "body { background: url(\"/assets/images/ajax-loader.gif\"); }";
 
 // Case insensitive
-var path = '/IMAGES/ajax-loader.gif';
+var path = '/assets/IMAGES/ajax-loader.gif';
 
 // With query string and anchor
-var path = '/images/ajax-loader.gif?a=b';
-var path = '/images/ajax-loader.gif#a';
+var path = '/assets/images/ajax-loader.gif?a=b';
+var path = '/assets/images/ajax-loader.gif#a';
 
 // Invalid
 var path = 'ajax-loader.gif';

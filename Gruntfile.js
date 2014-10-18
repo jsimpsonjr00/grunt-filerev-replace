@@ -38,7 +38,7 @@ module.exports = function(grunt) {
     // Configuration to be run (and then tested).
     filerev_replace: {
       options: {
-        assets_root: 'tmp/assets/'
+        assets_root: 'tmp/'
       },
       dist: {
         options: {
